@@ -7,7 +7,7 @@ import java.io.Serializable;
 public class Pessoa implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     @Column
@@ -15,6 +15,9 @@ public class Pessoa implements Serializable {
 
     @Column
     private String cpf;
+
+    @Column
+    private String estadoCivil;
 
     @Column
     private boolean ativo;
@@ -49,5 +52,13 @@ public class Pessoa implements Serializable {
 
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
+    }
+
+    public String getEstadoCivil() {
+        return estadoCivil;
+    }
+
+    public void setEstadoCivil(String estadoCivil) {
+        this.estadoCivil = estadoCivil;
     }
 }

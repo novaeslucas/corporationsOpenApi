@@ -18,6 +18,9 @@ public interface PessoaMapper {
     @Mappings({
             @Mapping(target = "id", source = "id"),
             @Mapping(target = "nome", source = "nome"),
+            @Mapping(target = "cpf", source = "cpf"),
+            @Mapping(target = "estadoCivil", source = "estadoCivil"),
+            @Mapping(target = "ativo", source = "ativo"),
     })
     Pessoa mapTo(PessoaDTO pessoaDTO);
 

@@ -14,6 +14,8 @@ servers:
 paths:
   /pessoas:
     get:
+      tags:
+        - pessoas
       summary: Obter todas as pessoas
       operationId: getPessoas
       parameters:
@@ -44,8 +46,33 @@ paths:
               schema:
                 $ref: '#/components/schemas/PessoaDTOResponse'
 
+  /pessoas/inserir:
+    post:
+      tags:
+        - pessoas
+      summary: Inserir pessoas
+      operationId: inserir
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PessoaDTO'
+      responses:
+        201:
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PessoaDTO'
+
 components:
   schemas:
+    EstadoCivilDTO:
+      type: string
+      enum:
+        - CASADO
+        - SOLTEIRO
+
     PessoaDTO:
       type: object
       properties:
@@ -56,6 +83,11 @@ components:
           type: string
         cpf:
           type: string
+        estadoCivil:
+          type: string
+          $ref: '#/components/schemas/EstadoCivilDTO'
+        ativo:
+          type: boolean
 
     PessoaDTOResponse:
         type: object

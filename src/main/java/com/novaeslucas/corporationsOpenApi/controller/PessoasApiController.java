@@ -44,4 +44,17 @@ public class PessoasApiController implements PessoasApi {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
+    @Override
+    public ResponseEntity<PessoaDTO> inserir(PessoaDTO pessoaDTO){
+        String accept = request.getHeader("Accept");
+        if (accept != null && accept.contains("application/json")) {
+
+            PessoaDTO response = pessoaService.inserir(pessoaDTO);
+
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+    }
+
 }

@@ -33,4 +33,10 @@ public class PessoaService {
         }
         return pessoaDTOResponse;
     }
+
+    public PessoaDTO inserir(PessoaDTO pessoaDTO){
+        Pessoa pessoa = PessoaMapper.INSTANCE.mapTo(pessoaDTO);
+        Pessoa pessoaSalva = pessoaRepository.save(pessoa);
+        return PessoaMapper.INSTANCE.mapTo(pessoaSalva);
+    }
 }
