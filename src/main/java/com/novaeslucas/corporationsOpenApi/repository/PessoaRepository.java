@@ -9,7 +9,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 public interface PessoaRepository extends PagingAndSortingRepository<Pessoa, Long> {
 
-//    @Query("select p from pessoa")
-//    Page<Pessoa> getAll(Pageable pageable);
+    @Query(value = "select * from pessoa where ativo = true", nativeQuery = true)
+    Page<Pessoa> getAllAtivos(Pageable pageable);
 
 }

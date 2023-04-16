@@ -9,7 +9,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -22,7 +21,7 @@ public class PessoaService {
     }
 
     public PessoaDTOResponse getAll(Pageable pageable){
-        Page<Pessoa> pessoas = pessoaRepository.findAll(pageable);
+        Page<Pessoa> pessoas = pessoaRepository.getAllAtivos(pageable);
         PessoaDTOResponse pessoaDTOResponse = new PessoaDTOResponse();
         if(pessoas != null && !pessoas.getContent().isEmpty()){
             List<PessoaDTO> pessoasDTO = PessoaMapper.INSTANCE.mapTo(pessoas.getContent());
