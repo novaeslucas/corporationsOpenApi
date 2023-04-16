@@ -1,0 +1,76 @@
+openapi: 3.0.2
+
+info:
+  title: Corportations API
+  description: Este é uma projeto de exemplo para aplicar conceitos relacionados com swagger codegen
+  version: 1.0.0
+  contact:
+    name: Lucas Novaes
+
+servers:
+  - url: 'http://localhost:8080'
+    description: dev
+
+paths:
+  /pessoas:
+    get:
+      summary: Obter todas as pessoas
+      operationId: getPessoas
+      parameters:
+        - name: page
+          in: query
+          description: O número da página a ser retornada.
+          required: false
+          schema:
+            type: integer
+            format: int32
+            minimum: 0
+            default: 0
+        - name: size
+          in: query
+          description: O tamanho da página a ser retornada.
+          required: false
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+            maximum: 100
+            default: 20
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PessoaDTOResponse'
+
+components:
+  schemas:
+    PessoaDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        nome:
+          type: string
+        cpf:
+          type: string
+
+    PessoaDTOResponse:
+        type: object
+        required:
+          - items
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/PessoaDTO'
+          totalItens:
+            type: integer
+          paginaAtual:
+            type: integer
+          itensPaginaAtual:
+            type: integer
+          totalPaginas:
+            type: integer
