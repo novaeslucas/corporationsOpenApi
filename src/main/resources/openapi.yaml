@@ -88,6 +88,11 @@ components:
           $ref: '#/components/schemas/EstadoCivilDTO'
         ativo:
           type: boolean
+      required:
+        - nome
+        - cpf
+        - estadoCivil
+        - ativopess
 
     PessoaDTOResponse:
         type: object
